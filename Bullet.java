@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Write a description of class Bullet here.
  * 
  * @author (your name) 
- * @version (a version number or a date)
+ * @versdion (a version number or a date)
  */
 public class Bullet extends Actor
 {
@@ -26,8 +26,8 @@ public class Bullet extends Actor
         if(
         this.getX() == 0 
         || this.getY() == 0 
-        || this.getX() >= MyWorld.sizeWorld - 1
-        || this.getY() >= MyWorld.sizeWorld -1
+        || this.getX() >= this.getWorld().getWidth() - 1
+        || this.getY() >= this.getWorld().getHeight() - 1
         ){
             this.getWorld().removeObject(this);
         }
