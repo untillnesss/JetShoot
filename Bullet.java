@@ -23,12 +23,13 @@ public class Bullet extends Actor
     {
         this.move(10);
 
-        if(
-        this.getX() == 0 
-        || this.getY() == 0 
-        || this.getX() >= this.getWorld().getWidth() - 1
-        || this.getY() >= this.getWorld().getHeight() - 1
-        ){
+        this.overlapingScreen();
+    }
+
+    private void overlapingScreen(){
+        if(this.getWorld() == null) return;
+
+        if(this.isAtEdge()){
             this.getWorld().removeObject(this);
         }
     }

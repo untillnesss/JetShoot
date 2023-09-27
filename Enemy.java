@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Enemy extends Actor
 {
     Jet jet;
-    
+
     public Enemy(Jet jet){
         this.jet = jet;
         this.setImage("alien1.png");
@@ -24,10 +24,19 @@ public class Enemy extends Actor
     public void act()
     {
         this.followJet();
+        this.fired();
     }
 
     public void followJet(){
         this.move(1);
         this.turnTowards(this.jet.getX(), this.jet.getY());
+    }
+
+    public void fired(){
+        Actor bullet = this.getOneIntersectingObject(Bullet.class);
+        if(bullet != null){
+            this.getWorld().removeObject(bullet);
+            this.getWorld().removeObject(this);
+        }
     }
 }
