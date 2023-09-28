@@ -16,6 +16,8 @@ public class MyWorld extends World
     
     Jet jet;
     Score score = new Score();
+    
+    private Scroller scroller;
 
     public MyWorld(){
         this(MyWorld.sizeWorld);
@@ -30,12 +32,40 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(sizeWorld, sizeWorld, 1); 
         this.jet = new Jet(this.score);
+        
+        GreenfootImage imageBg = new GreenfootImage("space1.jpg");
+        this.scroller = new Scroller(this, imageBg);
+        
         prepare();
+    }
+    
+    private void scroll(){
+        
+        // Gerakin Jet ke atas
+        if(Greenfoot.isKeyDown("w")){
+            this.scroller.scroll(0, -1);
+        }
+
+        // Gerakin Jet ke bawah
+        if(Greenfoot.isKeyDown("s")){
+            this.scroller.scroll(0, 1);
+        }
+
+        // Gerakin Jet ke kiri
+        if(Greenfoot.isKeyDown("a")){
+            this.scroller.scroll(-1, 0);
+        }
+
+        // Gerakin Jet ke kanan
+        if(Greenfoot.isKeyDown("d")){
+            this.scroller.scroll(1, 0);
+        }
     }
 
     public void act(){
         this.count++;
         this.spawnEnemy();
+        this.scroll();
     }
     
     public Score getScore(){

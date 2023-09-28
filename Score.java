@@ -20,6 +20,7 @@ public class Score extends Actor
      */
     public void act()
     {
+        this.setLocation(86,56);
         this.displayScore();
         this.checkScore();
     }
