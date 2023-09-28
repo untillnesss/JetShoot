@@ -18,6 +18,7 @@ public class Jet extends Actor
         this.listenMouse();
         this.listenWSAD();
         this.listenMouseClick();
+        this.touchingEnemy();
     }
 
     private void listenMouse(){
@@ -53,6 +54,13 @@ public class Jet extends Actor
             Bullet newBullet = new Bullet();
             newBullet.setRotation(this.getRotation());
             this.getWorld().addObject(newBullet, this.getX(), this.getY());
+        }
+    }
+    
+    private void touchingEnemy(){
+        if(this.isTouching(Enemy.class)){
+            Actor enemy = this.getOneIntersectingObject(Enemy.class);
+            this.getWorld().removeObject(enemy);
         }
     }
 }
