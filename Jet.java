@@ -56,11 +56,13 @@ public class Jet extends Actor
             this.getWorld().addObject(newBullet, this.getX(), this.getY());
         }
     }
-    
+
     private void touchingEnemy(){
         if(this.isTouching(Enemy.class)){
             Actor enemy = this.getOneIntersectingObject(Enemy.class);
             this.getWorld().removeObject(enemy);
+
+            this.getWorld().addObject(new Explosion(this), this.getX(), this.getY());
         }
     }
 }
