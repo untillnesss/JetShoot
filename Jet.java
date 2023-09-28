@@ -60,6 +60,10 @@ public class Jet extends Actor
             Bullet newBullet = new Bullet();
             newBullet.setRotation(this.getRotation());
             this.getWorld().addObject(newBullet, this.getX(), this.getY());
+
+            World world = this.getWorld();
+            MyWorld myWorld = (MyWorld)world;
+            myWorld.sounds.laser.play();
         }
     }
 

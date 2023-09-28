@@ -16,6 +16,8 @@ public class MyWorld extends World
 
     Jet jet;
     Score score = new Score();
+    
+    Sounds sounds = new Sounds();
 
     private Scroller scroller;
 
@@ -32,6 +34,7 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(sizeWorld, sizeWorld, 1); 
+        this.sounds.bgm.playLoop();
         this.jet = new Jet(this.score);
 
         GreenfootImage imageBg = new GreenfootImage("space1.jpg");

@@ -14,7 +14,11 @@ public class Explosion extends Actor
     
     public Explosion(Jet jet){
         this.jet = jet;
-        this.setImage("explosion_1.png");   
+        this.setImage("explosion_1.png");
+
+        World world = this.getWorld();
+        MyWorld myWorld = (MyWorld)world;
+        myWorld.sounds.explosion.play();
     }
     /**
      * Act - do whatever the Explosion wants to do. This method is called whenever

@@ -54,6 +54,11 @@ public class Enemy extends Actor
             this.health--;
         }
         if(this.health == 0){
+            
+            World world = this.getWorld();
+            MyWorld myWorld = (MyWorld)world;
+            myWorld.sounds.kill.play();
+            
             this.destory();
 
             this.score.increase();

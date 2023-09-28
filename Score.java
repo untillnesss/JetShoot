@@ -38,13 +38,20 @@ public class Score extends Actor
     }
 
     private void checkScore(){
+        World world = this.getWorld();
+        MyWorld myWorld = (MyWorld)world;
+        
         if(this.score == 10){
             this.getWorld().showText(String.format("Kamu Menang >.<"), this.getWorld().getWidth() / 2 , this.getWorld().getHeight() / 2 );
+            myWorld.sounds.bgm.stop();
+            myWorld.sounds.win.play();
 
             Greenfoot.stop();
         }
         if(this.score == -1){
             this.getWorld().showText(String.format("Kamu Kalah :("), this.getWorld().getWidth() / 2 , this.getWorld().getHeight() / 2 );
+            myWorld.sounds.bgm.stop();
+            myWorld.sounds.lose.play();
 
             Greenfoot.stop();
         }
