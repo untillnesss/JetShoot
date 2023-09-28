@@ -11,11 +11,12 @@ public class Enemy extends Actor
     Jet jet;
     Score score;
     int health = 3;
+    EnemyHealth enemyHealth;
 
     public Enemy(Jet jet, Score score){
         this.jet = jet;
         this.score = score;
-        
+
         this.setImage("alien1.png");
         this.getImage().scale(50, 50);
         this.getImage().rotate(90);
@@ -27,8 +28,18 @@ public class Enemy extends Actor
      */
     public void act()
     {
+        if(this.enemyHealth == null){
+            this.enemyHealth = new EnemyHealth(this.health);
+            this.getWorld().addObject(this.enemyHealth, this.getX(), this.getY());
+        }
+
         this.followJet();
         this.fired();
+
+        if(this.getWorld() == null) return;
+
+        this.enemyHealth.setLocation(this.getX(), this.getY() - 40);
+        this.enemyHealth.setCurrentHealth(this.health);
     }
 
     public void followJet(){
@@ -43,8 +54,14 @@ public class Enemy extends Actor
             this.health--;
         }
         if(this.health == 0){
-            this.getWorld().removeObject(this);
+            this.destory();
+
             this.score.increase();
         }
+    }
+
+    public void destory(){
+        this.getWorld().removeObject(this.enemyHealth);
+        this.getWorld().removeObject(this);
     }
 }

@@ -10,11 +10,11 @@ public class Jet extends Actor
 {
     private int speed = 4;
     Score score;
-    
+
     public Jet(Score score){
         this.score = score;
     }
-    
+
     /**
      * Act - do whatever the Jet wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -66,7 +66,8 @@ public class Jet extends Actor
     private void touchingEnemy(){
         if(this.isTouching(Enemy.class)){
             Actor enemy = this.getOneIntersectingObject(Enemy.class);
-            this.getWorld().removeObject(enemy);
+            Enemy hittedEnemy = (Enemy) enemy;
+            hittedEnemy.destory();
 
             this.getWorld().addObject(new Explosion(this), this.getX(), this.getY());
             this.score.decrease();

@@ -13,14 +13,15 @@ public class MyWorld extends World
     int count = 0;
     int spawnSpeed = 100;
     int spawnRandom = 0;
-    
+
     Jet jet;
     Score score = new Score();
-    
+
     private Scroller scroller;
 
     public MyWorld(){
         this(MyWorld.sizeWorld);
+        prepare();
     }
 
     /**
@@ -32,15 +33,15 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(sizeWorld, sizeWorld, 1); 
         this.jet = new Jet(this.score);
-        
+
         GreenfootImage imageBg = new GreenfootImage("space1.jpg");
         this.scroller = new Scroller(this, imageBg);
-        
+
         prepare();
     }
-    
+
     private void scroll(){
-        
+
         // Gerakin Jet ke atas
         if(Greenfoot.isKeyDown("w")){
             this.scroller.scroll(0, -1);
@@ -67,9 +68,13 @@ public class MyWorld extends World
         this.spawnEnemy();
         this.scroll();
     }
-    
+
     public Score getScore(){
         return this.score;
+    }
+
+    public Jet getJet(){
+        return this.jet;
     }
 
     /**
@@ -79,7 +84,7 @@ public class MyWorld extends World
     private void prepare()
     {
         this.addObject(this.jet,this.getWidth() / 2,this.getHeight() / 2);
-        
+
         this.addObject(this.score,86,56);
     }
 
@@ -87,7 +92,7 @@ public class MyWorld extends World
         if(this.count % this.spawnSpeed == 0){
             this.spawnRandom = Greenfoot.getRandomNumber(8);
             Enemy enemy = new Enemy(this.jet, this.score);
-            
+
             switch(this.spawnRandom){
                 case 0:
                     this.addObject(enemy, 0, 0);
