@@ -21,17 +21,32 @@ public class Score extends Actor
     public void act()
     {
         this.displayScore();
+        this.checkScore();
     }
 
     public void displayScore(){
         this.setImage(new GreenfootImage(String.format(" Poin %s ", this.score),  40, Color.BLACK, Color.WHITE));
     }
-    
+
     public void increase(){
         this.score++;
     }
-    
+
     public void decrease(){
         this.score--;
+    }
+
+    private void checkScore(){
+        if(this.score == 10){
+            this.getWorld().showText(String.format("Kamu Menang >.<"), this.getWorld().getWidth() / 2 , this.getWorld().getHeight() / 2 );
+
+            Greenfoot.stop();
+        }
+        if(this.score == -1){
+            this.getWorld().showText(String.format("Kamu Kalah :("), this.getWorld().getWidth() / 2 , this.getWorld().getHeight() / 2 );
+
+            Greenfoot.stop();
+        }
+
     }
 }
