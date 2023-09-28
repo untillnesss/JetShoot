@@ -9,10 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Enemy extends Actor
 {
     Jet jet;
+    Score score;
     int health = 3;
 
-    public Enemy(Jet jet){
+    public Enemy(Jet jet, Score score){
         this.jet = jet;
+        this.score = score;
+        
         this.setImage("alien1.png");
         this.getImage().scale(50, 50);
         this.getImage().rotate(90);
@@ -41,6 +44,7 @@ public class Enemy extends Actor
         }
         if(this.health == 0){
             this.getWorld().removeObject(this);
+            this.score.increase();
         }
     }
 }

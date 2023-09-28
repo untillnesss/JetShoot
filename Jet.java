@@ -9,6 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Jet extends Actor
 {
     private int speed = 4;
+    Score score;
+    
+    public Jet(Score score){
+        this.score = score;
+    }
+    
     /**
      * Act - do whatever the Jet wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -63,6 +69,7 @@ public class Jet extends Actor
             this.getWorld().removeObject(enemy);
 
             this.getWorld().addObject(new Explosion(this), this.getX(), this.getY());
+            this.score.decrease();
         }
     }
 }
