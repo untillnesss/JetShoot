@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Enemy extends Actor
 {
     Jet jet;
+    int health = 3;
 
     public Enemy(Jet jet){
         this.jet = jet;
@@ -36,6 +37,9 @@ public class Enemy extends Actor
         Actor bullet = this.getOneIntersectingObject(Bullet.class);
         if(bullet != null){
             this.getWorld().removeObject(bullet);
+            this.health--;
+        }
+        if(this.health == 0){
             this.getWorld().removeObject(this);
         }
     }
